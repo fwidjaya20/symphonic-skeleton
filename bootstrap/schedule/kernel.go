@@ -6,6 +6,6 @@ import (
 
 type Kernel struct{}
 
-func (kernel *Kernel) Schedule() []schedule.Job {
+func (kernel Kernel) Schedule() []schedule.Job {
 	return []schedule.Job{}
 }

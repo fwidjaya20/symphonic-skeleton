@@ -21,7 +21,7 @@ func init() {
 
 	config.Add("app", map[string]any{
 		"env":  config.Get("APP_ENV", "production"),
-		"port": config.Get("APP_PORT", "8000"),
+		"port": config.Get("APP_PORT", "5000"),
 		"providers": []foundation.ServiceProvider{
 			&event.ServiceProvider{},
 			&database.ServiceProvider{},

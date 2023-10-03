@@ -10,13 +10,7 @@ import (
 type Kernel struct {
 }
 
-type Result struct {
-	ID   int
-	Name string
-	Age  int
-}
-
-func (kernel *Kernel) Routes(e *echo.Echo) {
+func (kernel Kernel) Routes(e *echo.Echo) {
 	e.GET("/health", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, facades.Config().Inspect())
 	})
