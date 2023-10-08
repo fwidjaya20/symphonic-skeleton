@@ -11,6 +11,9 @@ git clone git@github.com:fwidjaya20/symphonic-skeleton.git [project-name] && rm 
 // Installation dependencies
 cd [project-name] && go mod tidy
 
+// Rename the module path
+find . -type f \( -name "*.go" -o -name "go.mod" -o -name "go.sum" \) -exec sed -i '' 's|github.com/fwidjaya20/symphonic-skeleton|[your-module-path]|g' {} +
+
 // Create .env environment configuration file
 cp .env.example .env
 ```
