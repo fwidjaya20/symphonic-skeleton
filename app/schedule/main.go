@@ -1,11 +1,11 @@
-package main
+package schedule
 
 import (
 	"github.com/fwidjaya20/symphonic-skeleton/bootstrap"
 	"github.com/fwidjaya20/symphonic/facades"
 )
 
-func main() {
+func RunServer() {
 	bootstrap.Boot()
 
 	facades.App().GetSchedule().Run()

@@ -8,9 +8,9 @@ import (
 type TaskSchedulerServiceProvider struct {
 }
 
-func (sp *TaskSchedulerServiceProvider) Boot(app foundation.Application) {}
+func (sp *TaskSchedulerServiceProvider) Boot(_ foundation.Application) {}
 
-func (sp *TaskSchedulerServiceProvider) Register(app foundation.Application) {
+func (sp *TaskSchedulerServiceProvider) Register(_ foundation.Application) {
 	kernel := Kernel{}
 
 	facades.Schedule().Register(kernel.Schedule())

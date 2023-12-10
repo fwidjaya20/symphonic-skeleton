@@ -1,4 +1,4 @@
-package vo
+package valueobjects
 
 type Reject struct {
 	Code     string `json:"code"`
@@ -7,7 +7,7 @@ type Reject struct {
 }
 
 type Resolve struct {
-	Data     interface{} `json:"data"`
-	Message  string      `json:"message,omitempty"`
-	Metadata interface{} `json:"metadata,omitempty"`
+	Data     any    `json:"data"`
+	Message  string `json:"message,omitempty"`
+	Metadata any    `json:"metadata,omitempty"`
 }

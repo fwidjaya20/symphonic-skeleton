@@ -11,14 +11,15 @@ func RunInTransaction(c *context.SymphonicContext, callback TxCallback) error {
 	tx := Gorm().Begin()
 
 	defer func() {
-		if r := recover(); nil != r {
+		if r := recover(); r != nil {
 			tx.Rollback()
+			panic(r)
 		}
 	}()
 
 	c.Database = tx
 
-	if err := callback(c); nil != err {
+	if err := callback(c); err != nil {
 		tx.Rollback()
 		return err
 	}

@@ -7,9 +7,9 @@ import (
 
 type ServiceProvider struct{}
 
-func (sp *ServiceProvider) Boot(app foundation.Application) {}
+func (sp *ServiceProvider) Boot(_ foundation.Application) {}
 
-func (sp *ServiceProvider) Register(app foundation.Application) {
+func (sp *ServiceProvider) Register(_ foundation.Application) {
 	kernel := Kernel{}
 
 	facades.Event().Register(kernel.Subscribers())

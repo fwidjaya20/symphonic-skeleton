@@ -1,5 +1,5 @@
-package main
+package grpc
 
-func main() {
+func RunServer() {
 	panic("implement me")
 }

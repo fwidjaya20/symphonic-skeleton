@@ -1,7 +1,11 @@
-package main
+package http
 
 import (
+	"context"
 	"fmt"
+	"os"
+	"os/signal"
+	"time"
 
 	"github.com/fwidjaya20/symphonic-skeleton/bootstrap"
 	"github.com/fwidjaya20/symphonic-skeleton/bootstrap/http"
@@ -11,7 +15,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
-func main() {
+func RunServer() {
 	bootstrap.Boot()
 
 	e := echo.New()
@@ -39,6 +43,7 @@ func main() {
 			sc := &SharedContext.SymphonicContext{
 				Context: c,
 			}
+
 			return next(sc)
 		}
 	})
@@ -47,7 +52,20 @@ func main() {
 
 	kernel.Routes(e)
 
-	if err := e.Start(fmt.Sprintf(":%v", facades.Config().Get("app.port"))); nil != err {
-		e.Logger.Fatal("shutting down the server")
+	go func() {
+		if err := e.Start(fmt.Sprintf("%s:%d", facades.Config().Get("app.host"), facades.Config().GetInt("app.port"))); err != nil {
+			e.Logger.Fatal("shutting down the server")
+		}
+	}()
+
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	if err := e.Shutdown(ctx); err != nil {
+		e.Logger.Fatal(err)
 	}
 }

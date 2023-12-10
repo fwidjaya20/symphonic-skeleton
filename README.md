@@ -18,6 +18,26 @@ find . -type f \( -name "*.go" -o -name "go.mod" -o -name "go.sum" \) -exec sed 
 cp .env.example .env
 ```
 
+#### Development
+
+Supercharge your development workflow with these handy libraries. Install them effortlessly to streamline your coding process:
+
+```shell
+go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@v1.15.0
+go install golang.org/x/tools/cmd/goimports@latest
+go install github.com/segmentio/golines@latest
+go install github.com/bombsimon/wsl/v4/cmd...@master
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.55.2
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+```
+
+Enhance your project's code consistency by automating the application of Prettier formatting using GitHooks. Follow these steps to set it up:
+
+```shell
+./scripts/install-git-hooks.sh
+```
+
 ## Architecture
 
 ### [Domain-Driven Design](https://github.com/ZilvinasKucinskas/FRP-EventSourcing/blob/master/sources/xx735.Eric.Evans.Domaindriven.Design.Tackling.Complexity.in.the.Heart.of.Software.pdf)
